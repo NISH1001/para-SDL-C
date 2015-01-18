@@ -158,7 +158,7 @@ int main()
 										{SCREEN_WIDTH/2, 0, wallattr.w, wallattr.h, wallattr.color},
 										{0,0, wallattr.w, wallattr.h, wallattr.color },
 										{100,0, wallattr.w, wallattr.h, wallattr.color },
-										{200,0, wallattr.w, wallattr.h, wallattr.color },
+										{100,100, wallattr.w, wallattr.h, wallattr.color },
 										{SCREEN_WIDTH-100,0, wallattr.w, wallattr.h, wallattr.color }
 									};
 
@@ -217,10 +217,6 @@ int main()
 
         				case SDLK_SPACE:
         					bulletfired = TRUE;
-        					//fireBulletUp(renderer, &bullet);
-        					if(bullet.y ==0 )
-        					{
-							}
         					break;
 					}
 
@@ -233,6 +229,10 @@ int main()
 		if(bullet.y <=0)
 		{
 			bulletfired = FALSE;
+		}
+
+		if(bulletfired == FALSE)
+		{
         	bullet.x = hero.x + hero.w/2-bullet.w/2;
 			bullet.y = hero.y - bullet.h;
 		}
@@ -244,9 +244,9 @@ int main()
 
 		for(i=0; i<5; i++)
 		{
-			if(checkCollision(&bullet, &walls[i].attribute) == TRUE)
+			if((walls[i].destroyed==FALSE) &&(checkCollision(&bullet, &walls[i].attribute) == TRUE))
 			{
-				//bulletfired = FALSE;
+				bulletfired = FALSE;
 				walls[i].destroyed = TRUE;
 			}
 		}
