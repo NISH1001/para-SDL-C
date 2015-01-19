@@ -106,7 +106,7 @@ int checkCollision(struct Box *box, struct Box *target)
 }
 
 float xinc_bullet = 3;
-float yinc_bullet = 6;
+float yinc_bullet = 8;
 
 void fireBulletUp(SDL_Renderer *renderer, struct Box *box)
 {
